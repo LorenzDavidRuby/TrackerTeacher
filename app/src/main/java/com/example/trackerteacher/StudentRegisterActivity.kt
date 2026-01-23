@@ -2,36 +2,30 @@ package com.example.trackerteacher
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class MainActivity : AppCompatActivity() {
+class StudentRegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_student_register)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        val loginButtonStudent = findViewById<Button>(R.id.BTN_studentloginbutton)
-        val loginButtonProfessor = findViewById<Button>(R.id.BTN_facultyloginbutton)
+        val loginLink = findViewById<TextView>(R.id.TV_loginLink)
 
-
-        loginButtonStudent.setOnClickListener {
+        loginLink.setOnClickListener {
             val intent = Intent(this, StudentLoginActivity::class.java)
             startActivity(intent)
         }
-
-        loginButtonProfessor.setOnClickListener {
-            val intent = Intent(this, TeacherAccessActivity::class.java)
-            startActivity(intent)
-        }
-
     }
+
+
 }

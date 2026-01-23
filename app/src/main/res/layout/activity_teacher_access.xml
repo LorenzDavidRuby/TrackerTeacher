@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".StudentLoginActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="193dp"
+        android:layout_height="188dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="App Logo"
+        android:src="@drawable/logowithdesc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TV_studentLoginTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:gravity="center"
+        android:text="Faculty Staff Log in"
+        android:textColor="@color/white"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+    <EditText
+        android:id="@+id/ET_studentPassword"
+        android:layout_width="285dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="12dp"
+        android:autofillHints="password"
+        android:background="@drawable/rounded"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#B3FFFFFF"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TV_passwordLabel" />
+
+    <EditText
+        android:id="@+id/ET_studentEmail"
+        android:layout_width="285dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="4dp"
+        android:autofillHints="emailAddress"
+        android:background="@drawable/rounded"
+        android:hint="Email Address"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#B3FFFFFF"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TV_emailLabel" />
+
+    <Button
+        android:id="@+id/BTN_studentSubmitLogin"
+        android:layout_width="200dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="#F6F6F6"
+        android:text="Log In"
+        android:textColor="#36408c"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ET_studentPassword" />
+
+    <Button
+        android:id="@+id/BTN_teacherCreateAccount"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Don't have an account? Create one"
+        android:textColor="#F6F6F6"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BTN_studentSubmitLogin" />
+
+    <TextView
+        android:id="@+id/TV_emailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="EMAIL"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/ET_studentEmail"
+        app:layout_constraintTop_toBottomOf="@+id/TV_studentLoginTitle" />
+
+    <TextView
+        android:id="@+id/TV_passwordLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="PASSWORD"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/ET_studentPassword"
+        app:layout_constraintTop_toBottomOf="@+id/ET_studentEmail" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

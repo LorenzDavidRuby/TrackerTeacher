@@ -8,30 +8,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class MainActivity : AppCompatActivity() {
+class TeacherAccessActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_teacher_access)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        val loginButtonStudent = findViewById<Button>(R.id.BTN_studentloginbutton)
-        val loginButtonProfessor = findViewById<Button>(R.id.BTN_facultyloginbutton)
+        val registerButton = findViewById<Button>(R.id.BTN_teacherCreateAccount)
 
 
-        loginButtonStudent.setOnClickListener {
-            val intent = Intent(this, StudentLoginActivity::class.java)
+        registerButton.setOnClickListener {
+            val intent = Intent(this, ProfessorRegisterActivity::class.java)
             startActivity(intent)
         }
-
-        loginButtonProfessor.setOnClickListener {
-            val intent = Intent(this, TeacherAccessActivity::class.java)
-            startActivity(intent)
-        }
-
     }
 }
