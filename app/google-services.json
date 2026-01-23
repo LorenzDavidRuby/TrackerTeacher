@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "492592485819",
+    "project_id": "trackerteacherprojectdatabase",
+    "storage_bucket": "trackerteacherprojectdatabase.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492592485819:android:cd81d01da84f7c155ee09e",
+        "android_client_info": {
+          "package_name": "com.example.trackerteacher"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5Q8u-s3Qo0kjklTNXUDnV80zz4PxPtsU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
