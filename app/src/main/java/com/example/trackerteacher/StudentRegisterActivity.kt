@@ -2,6 +2,7 @@ package com.example.trackerteacher
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -20,12 +21,17 @@ class StudentRegisterActivity : AppCompatActivity() {
         }
 
         val loginLink = findViewById<TextView>(R.id.TV_loginLink)
+        val btnSignUp = findViewById<Button>(R.id.BTN_studentSignUp)
 
         loginLink.setOnClickListener {
             val intent = Intent(this, StudentLoginActivity::class.java)
             startActivity(intent)
         }
+
+        btnSignUp.setOnClickListener {
+            // Logic for registration should go here
+            val intent = Intent(this, StudentMenuPage::class.java)
+            startActivity(intent)
+        }
     }
-
-
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp">
+
+    <RelativeLayout
+        android:id="@+id/RL_cardBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#C5E4F7"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/TV_facultyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Olivia Chen, BSIT"
+            android:textColor="#2C3E50"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/TV_facultyStatusRoom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/TV_facultyName"
+            android:layout_marginTop="2dp"
+            android:text="Available - Room 418"
+            android:textColor="#5D6D7E"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/TV_lastUpdated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/TV_facultyStatusRoom"
+            android:layout_marginTop="4dp"
+            android:text="Updated just now"
+            android:textColor="#85929E"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/IV_notificationBell"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@android:drawable/ic_popup_reminder"
+            app:tint="#3498DB" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

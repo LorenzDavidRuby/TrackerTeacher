@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrackerTeacher">
         <activity
+            android:name=".StudentMenuPage"
+            android:exported="false" />
+        <activity
             android:name=".ProfessorRegisterActivity"
             android:exported="false" />
         <activity

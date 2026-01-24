@@ -19,12 +19,18 @@ class StudentLoginActivity : AppCompatActivity() {
             insets
         }
 
-        val loginButton = findViewById<Button>(R.id.BTN_studentCreateAccount)
+        val btnLogin = findViewById<Button>(R.id.BTN_studentSubmitLogin)
+        val btnCreateAccount = findViewById<Button>(R.id.BTN_studentCreateAccount)
 
-        loginButton.setOnClickListener {
+        btnLogin.setOnClickListener {
+            // Logic for authentication should go here
+            val intent = Intent(this, StudentMenuPage::class.java)
+            startActivity(intent)
+        }
+
+        btnCreateAccount.setOnClickListener {
             val intent = Intent(this, StudentRegisterActivity::class.java)
             startActivity(intent)
         }
     }
-
 }
