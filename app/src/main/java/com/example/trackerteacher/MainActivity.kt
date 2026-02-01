@@ -9,12 +9,18 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.trackerteacher.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -22,20 +28,27 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-
-
-        // login button
-        val loginButtonStudent = findViewById<Button>(R.id.BTN_studentloginbutton)
-        val loginButtonProfessor = findViewById<Button>(R.id.BTN_facultyloginbutton)
-
-        loginButtonStudent.setOnClickListener {
-            val intent = Intent(this, StudentLoginActivity::class.java)
-            startActivity(intent)
+        binding.BTNStudentloginbutton.setOnClickListener {
+            logIn()
         }
 
-        loginButtonProfessor.setOnClickListener {
-            val intent = Intent(this, TeacherAccessActivity::class.java)
-            startActivity(intent)
+        binding.BTNStudentsignUp.setOnClickListener {
+            signUp()
         }
+
+
+
     }
+
+    private fun logIn() {
+        val intent = Intent(this, StudentLoginActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun signUp() {
+        val intent = Intent(this, StudentRegisterActivity::class.java)
+        startActivity(intent)
+    }
+
+
 }

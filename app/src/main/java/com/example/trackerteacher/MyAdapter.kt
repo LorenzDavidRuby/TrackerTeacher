@@ -1,85 +1,86 @@
-package com.example.trackerteacher;
+package com.example.trackerteacher
 
-import android.content.Context;
-import android.graphics.Color;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
+import android.content.Context
+import android.content.Intent
+import android.graphics.Color
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import java.util.*
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+class MyAdapter(private val context: Context, private var items: MutableList<Item>) :
+    RecyclerView.Adapter<MyViewHolder>() {
 
-import java.util.ArrayList;
-import java.util.List;
+    private val itemsFull: MutableList<Item> = ArrayList(items)
 
-// ViewHolder class for RecyclerView items (itemview.xml)
-public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
-
-    Context context; // Context of the activity
-    List<Item> items; // List of items to display
-    List<Item> itemsFull; // Original complete list
-
-    public MyAdapter(Context context, List<Item> items) { // Constructor
-        this.context = context;
-        this.items = items;
-        this.itemsFull = new ArrayList<>(items);
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.itemview, parent, false)
+        return MyViewHolder(view)
     }
 
-    @NonNull
-    @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.itemview, parent, false)); // Inflate the layout
-    }
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val item = items[position]
 
-    @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) { // Bind data to the ViewHolder
-        Item item = items.get(position); // Get the current item
-        holder.nameView.setText(item.getName() + ", " + item.getCourse()); // Set the text of the views in the ViewHolder
-        holder.statusRoomView.setText(item.getStatus() + " - " + item.getRoom()); // same
-        holder.lastUpdateView.setText("Updated " + item.getLastUpdateOfStatus()); // same
+        // Displays Professor Name and Department
+        holder.nameView.text = "${item.name}, ${item.course}"
 
-        if (item.getStatus().equalsIgnoreCase("Available")) {
-            holder.cardBackground.setBackgroundResource(R.drawable.card_background_available);
-            holder.bellIcon.setColorFilter(Color.parseColor("#3498DB"));
-        } else {
-            holder.cardBackground.setBackgroundResource(R.drawable.card_background_offline);
-            holder.bellIcon.setColorFilter(Color.parseColor("#7F8C8D"));
+
+        // Make the entire card clickable to view schedule
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, ScheduleActivity::class.java).apply {
+                putExtra("FACULTY_NAME", item.name)
+                putExtra("FACULTY_COURSE", item.course)
+                putExtra("FACULTY_IMAGE", item.image)
+                putExtra("SCHEDULE_IMAGE", item.scheduleImage) // Schedule image resource
+            }
+            context.startActivity(intent)
         }
     }
 
-    @Override
-    public int getItemCount() {
-        return items.size();
-    }
+    override fun getItemCount(): Int = items.size
 
-    // New generic search method
-    public void search(String query) {
-        String lowerCaseQuery = query.toLowerCase().trim();
-        items.clear();
+    /**
+     * Search logic filtering by Professor Name or Department
+     */
+    fun search(query: String) {
+        val lowerCaseQuery = query.lowercase(Locale.getDefault()).trim()
+        items.clear()
         if (lowerCaseQuery.isEmpty()) {
-            items.addAll(itemsFull);
+            items.addAll(itemsFull)
         } else {
-            for (Item item : itemsFull) {
-                if (item.getName().toLowerCase().contains(lowerCaseQuery) || 
-                    item.getCourse().toLowerCase().contains(lowerCaseQuery)) {
-                    items.add(item);
+            for (item in itemsFull) {
+                if (item.name.lowercase(Locale.getDefault()).contains(lowerCaseQuery) ||
+                    item.course.lowercase(Locale.getDefault()).contains(lowerCaseQuery)
+                ) {
+                    items.add(item)
                 }
             }
         }
-        notifyDataSetChanged();
+        notifyDataSetChanged()
     }
 
-    // Keep course filter for the button as well
-    public void filterByCourse(String course) {
-        items.clear();
-        if (course.equals("All")) {
-            items.addAll(itemsFull);
+    /**
+     * Filter specifically by Department/Program
+     */
+    fun filterByCourse(course: String) {
+        items.clear()
+        if (course == "All") {
+            items.addAll(itemsFull)
         } else {
-            for (Item item : itemsFull) {
-                if (item.getCourse().equalsIgnoreCase(course)) {
-                    items.add(item);
+            for (item in itemsFull) {
+                if (item.course.equals(course, ignoreCase = true)) {
+                    items.add(item)
                 }
             }
         }
-        notifyDataSetChanged();
+        notifyDataSetChanged()
+    }
+
+    /**
+     * Update the full list when items are added or removed
+     */
+    fun updateFullList() {
+        itemsFull.clear()
+        itemsFull.addAll(items)
     }
 }

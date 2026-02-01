@@ -10,27 +10,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TrackerTeacher">
+
+        <!-- Schedule Activity with parent -->
+        <activity
+            android:name=".ScheduleActivity"
+            android:exported="false"
+            android:parentActivityName=".StudentMenuPage">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".StudentMenuPage" />
+        </activity>
+
         <activity
             android:name=".StudentMenuPage"
             android:exported="false" />
-        <activity
-            android:name=".ProfessorRegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TeacherAccessActivity"
-            android:exported="false" />
+
         <activity
             android:name=".StudentRegisterActivity"
             android:exported="false" />
+
         <activity
             android:name=".StudentLoginActivity"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -38,6 +45,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

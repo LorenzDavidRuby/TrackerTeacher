@@ -25,26 +25,6 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/TV_facultyStatusRoom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/TV_facultyName"
-            android:layout_marginTop="2dp"
-            android:text="Available - Room 418"
-            android:textColor="#5D6D7E"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/TV_lastUpdated"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/TV_facultyStatusRoom"
-            android:layout_marginTop="4dp"
-            android:text="Updated just now"
-            android:textColor="#85929E"
-            android:textSize="12sp" />
-
         <ImageView
             android:id="@+id/IV_notificationBell"
             android:layout_width="24dp"
