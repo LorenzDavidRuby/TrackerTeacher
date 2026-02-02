@@ -25,10 +25,10 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="Back"
         android:src="@android:drawable/ic_menu_revert"
-        android:tint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/topBar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/topBar" />
+        app:layout_constraintTop_toTopOf="@+id/topBar"
+        app:tint="#FFFFFF" />
 
     <!-- Title -->
     <TextView

@@ -2,7 +2,6 @@ package com.example.trackerteacher
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -21,17 +20,27 @@ class MyAdapter(private val context: Context, private var items: MutableList<Ite
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = items[position]
 
-        // Displays Professor Name and Department
-        holder.nameView.text = "${item.name}, ${item.course}"
+        // 1. Set text views separately to match the new design
+        holder.nameView.text = item.name
 
+        // Formats the department text nicely
+        holder.courseView.text = if (item.course.contains("Department")) {
+            item.course
+        } else {
+            "${item.course} Department"
+        }
 
-        // Make the entire card clickable to view schedule
+        // 2. Set the Profile Image (Matching the new IV_facultyProfile ID)
+        holder.profileImageView.setImageResource(item.image)
+
+        // 3. Navigation logic to ScheduleActivity
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ScheduleActivity::class.java).apply {
+                // Passing data to the next activity
                 putExtra("FACULTY_NAME", item.name)
                 putExtra("FACULTY_COURSE", item.course)
                 putExtra("FACULTY_IMAGE", item.image)
-                putExtra("SCHEDULE_IMAGE", item.scheduleImage) // Schedule image resource
+                putExtra("SCHEDULE_IMAGE", item.scheduleImage)
             }
             context.startActivity(intent)
         }
@@ -39,9 +48,8 @@ class MyAdapter(private val context: Context, private var items: MutableList<Ite
 
     override fun getItemCount(): Int = items.size
 
-    /**
-     * Search logic filtering by Professor Name or Department
-     */
+    // --- Search and Filter Logic ---
+
     fun search(query: String) {
         val lowerCaseQuery = query.lowercase(Locale.getDefault()).trim()
         items.clear()
@@ -59,9 +67,6 @@ class MyAdapter(private val context: Context, private var items: MutableList<Ite
         notifyDataSetChanged()
     }
 
-    /**
-     * Filter specifically by Department/Program
-     */
     fun filterByCourse(course: String) {
         items.clear()
         if (course == "All") {
@@ -76,9 +81,6 @@ class MyAdapter(private val context: Context, private var items: MutableList<Ite
         notifyDataSetChanged()
     }
 
-    /**
-     * Update the full list when items are added or removed
-     */
     fun updateFullList() {
         itemsFull.clear()
         itemsFull.addAll(items)
