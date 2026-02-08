@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -11,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrackerTeacher">
 
-        <!-- Schedule Activity with parent -->
         <activity
             android:name=".ScheduleActivity"
             android:exported="false"
+            android:configChanges="uiMode"
             android:parentActivityName=".StudentMenuPage">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -23,18 +24,22 @@
 
         <activity
             android:name=".StudentMenuPage"
+            android:configChanges="uiMode"
             android:exported="false" />
 
         <activity
             android:name=".StudentRegisterActivity"
+            android:configChanges="uiMode"
             android:exported="false" />
 
         <activity
             android:name=".StudentLoginActivity"
+            android:configChanges="uiMode"
             android:exported="false" />
 
         <activity
             android:name=".MainActivity"
+            android:configChanges="uiMode"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7F9"
     tools:context=".StudentMenuPage">
 
     <View
@@ -72,12 +71,13 @@
             android:layout_height="wrap_content"
             android:padding="12dp">
 
+
             <TextView
                 android:id="@+id/TV_facultyStatusTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Faculty Members"
-                android:textColor="#2C3E50"
+                android:textColor="#2196F3"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
