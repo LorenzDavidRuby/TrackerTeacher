@@ -1,6 +1,9 @@
 package com.example.trackerteacher
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.GestureDetector
+import android.view.MotionEvent
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -9,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.imageview.ShapeableImageView
+import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.min
 
 class ScheduleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,43 +44,126 @@ class ScheduleActivity : AppCompatActivity() {
 
         // 3. Bind data to views
         tvFacultyName.text = facultyName
-        // Adding "Department" suffix to match your design intent
-        tvFacultyCourse.text = if (facultyCourse.contains("Department")) facultyCourse else "$facultyCourse Department"
+        tvFacultyCourse.text = if (facultyCourse.contains("Department")) {
+            facultyCourse
+        } else {
+            "$facultyCourse Department"
+        }
 
         ivProfile.setImageResource(facultyImage)
         ivSchedule.setImageResource(scheduleImage)
 
         // 4. Back button functionality
         btnBack.setOnClickListener {
-            onBackPressedDispatcher.onBackPressed() // Modern way to handle back navigation
+            onBackPressedDispatcher.onBackPressed()
         }
 
         // 5. Setup Interactive Schedule View
-        setupImageZoom(ivSchedule)
+        setupImageZoomAndPan(ivSchedule)
     }
 
     /**
-     * Interactive Zoom logic: Tap to enlarge the schedule image
+     * Interactive Zoom & Pan logic: Tap to zoom, drag to pan when zoomed
+     * with bounds constraint to prevent dragging beyond image edges
      */
-    private fun setupImageZoom(imageView: ImageView) {
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setupImageZoomAndPan(imageView: ImageView) {
         var isZoomed = false
+        var lastTouchX = 0f
+        var lastTouchY = 0f
+        var posX = 0f
+        var posY = 0f
+        var isDragging = false
+        val scaleFactor = 2.5f
 
-        imageView.setOnClickListener {
-            if (!isZoomed) {
-                imageView.animate()
-                    .scaleX(1.5f)
-                    .scaleY(1.5f)
-                    .setDuration(300)
-                    .start()
-                isZoomed = true
-            } else {
-                imageView.animate()
-                    .scaleX(1.0f)
-                    .scaleY(1.0f)
-                    .setDuration(300)
-                    .start()
-                isZoomed = false
+        val gestureDetector = GestureDetector(
+            this,
+            object : GestureDetector.SimpleOnGestureListener() {
+                override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
+                    // Toggle zoom on tap
+                    if (!isZoomed) {
+                        // Zoom in
+                        imageView.animate()
+                            .scaleX(scaleFactor)
+                            .scaleY(scaleFactor)
+                            .setDuration(300)
+                            .start()
+                        isZoomed = true
+                    } else {
+                        // Zoom out and reset position
+                        imageView.animate()
+                            .scaleX(1.0f)
+                            .scaleY(1.0f)
+                            .translationX(0f)
+                            .translationY(0f)
+                            .setDuration(300)
+                            .start()
+                        isZoomed = false
+                        posX = 0f
+                        posY = 0f
+                    }
+                    return true
+                }
+            })
+
+        imageView.setOnTouchListener { view, event ->
+            // Let gesture detector handle taps
+            gestureDetector.onTouchEvent(event)
+
+            // Handle dragging only when zoomed
+            if (isZoomed) {
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        lastTouchX = event.rawX
+                        lastTouchY = event.rawY
+                        isDragging = false
+                    }
+
+                    MotionEvent.ACTION_MOVE -> {
+                        val dx = event.rawX - lastTouchX
+                        val dy = event.rawY - lastTouchY
+
+                        // Check if user is actually dragging (moved more than a threshold)
+                        if (abs(dx) > 10 || abs(dy) > 10) {
+                            isDragging = true
+                        }
+
+                        if (isDragging) {
+                            posX += dx
+                            posY += dy
+
+                            // Calculate bounds to prevent dragging beyond image edges
+                            val imageWidth = view.width.toFloat()
+                            val imageHeight = view.height.toFloat()
+
+                            // Calculate how much the image extends beyond the view when scaled
+                            val scaledWidth = imageWidth * scaleFactor
+                            val scaledHeight = imageHeight * scaleFactor
+
+                            // Maximum translation is half the difference between scaled and original size
+                            val maxTranslateX = (scaledWidth - imageWidth) / 2f
+                            val maxTranslateY = (scaledHeight - imageHeight) / 2f
+
+                            // Constrain position to keep image edges within bounds
+                            posX = max(-maxTranslateX, min(posX, maxTranslateX))
+                            posY = max(-maxTranslateY, min(posY, maxTranslateY))
+
+                            // Apply translation
+                            view.translationX = posX
+                            view.translationY = posY
+
+                            lastTouchX = event.rawX
+                            lastTouchY = event.rawY
+                        }
+                    }
+
+                    MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                        isDragging = false
+                    }
+                }
             }
+
+            true
         }
     }
 }
