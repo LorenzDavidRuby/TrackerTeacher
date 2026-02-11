@@ -124,14 +124,31 @@
             </androidx.cardview.widget.CardView>
 
             <!-- Schedule Section -->
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Weekly Schedule"
-                android:textColor="#2C3E50"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="12dp" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Weekly Schedule"
+                    android:textColor="#2C3E50"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- Term Selector Dropdown -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp"
+                    android:layout_marginStart="8dp"/>
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -141,35 +158,37 @@
                 android:textSize="12sp"
                 android:layout_marginBottom="8dp" />
 
-            <!-- Schedule Image Card -->
+            <!-- Schedule Image Card with Edit Button -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="4dp">
 
-                <ImageView
-                    android:id="@+id/IV_scheduleImage"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_launcher_foreground"
-                    android:contentDescription="Faculty Schedule"
-                    android:background="#FFFFFF" />
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/IV_scheduleImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_launcher_foreground"
+                        android:contentDescription="Faculty Schedule"
+                        android:background="#FFFFFF"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground" />
+
+                    <!-- Edit Button -->
+
+                </FrameLayout>
 
             </androidx.cardview.widget.CardView>
 
             <!-- Additional Info -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Schedule Information"
-                android:textColor="#2C3E50"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"

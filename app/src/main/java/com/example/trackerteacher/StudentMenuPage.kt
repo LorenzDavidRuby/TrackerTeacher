@@ -81,19 +81,18 @@ class StudentMenuPage : AppCompatActivity() {
      * e.g., R.drawable.schedule_olivia_chen, R.drawable.schedule_adrian_vance, etc.
      */
     private val allFacultyMembers = listOf(
-        Item("Olivia Chen", "BSIT", R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground),
-        Item("Adrian Vance", "BSIT", R.drawable.ic_launcher_foreground,  R.drawable.ic_launcher_foreground),
-        Item("Dr. Elena Rodriguez", "BSCS", R.drawable.ic_launcher_foreground,  R.drawable.ic_launcher_foreground),
-        Item("Prof. Willie Revillame", "BBA", R.drawable.ic_launcher_foreground,  R.drawable.ic_launcher_foreground),
-        Item("Dr. Sigmund Freud", "BSPSY", R.drawable.ic_launcher_foreground,  R.drawable.ic_launcher_foreground),
-        Item("Prof. Carl Jung", "BSPSY", R.drawable.ic_launcher_foreground,  R.drawable.ic_launcher_foreground),
-        Item("Marco Polo", "BSTOUR", R.drawable.ic_launcher_foreground,  R.drawable.ic_launcher_foreground),
-        Item("Ferdinand Magellan", "BSTOUR", R.drawable.ic_launcher_foreground,  R.drawable.ic_launcher_foreground),
-        Item("Dr. Albert Einstein", "BSCS", R.drawable.ic_launcher_foreground,  R.drawable.ic_launcher_foreground),
-        Item("Prof. Marie Curie", "BSCS", R.drawable.ic_launcher_foreground,  R.drawable.ic_launcher_foreground),
-        Item("Dr. Jane Goodall", "BSPSY", R.drawable.ic_launcher_foreground,  R.drawable.ic_launcher_foreground),
-        Item("Prof. Gordon Ramsay", "BSTOUR", R.drawable.ic_launcher_foreground,  R.drawable.ic_launcher_foreground),
-        Item("Mhersan", "BSIT", R.drawable.ic_launcher_foreground, R.drawable.mhersan)
+        Item("Lemuel Jun Bautista", "BSIT", R.drawable.ic_launcher_foreground,R.drawable.lemueljunebautista),
+        Item("Adrian Lee Magcalas", "BSIT", R.drawable.ic_launcher_foreground,R.drawable.adrianleemagcalas),
+        Item("Carl Joseph David", "BSIT", R.drawable.ic_launcher_foreground,R.drawable.carljosephdavid),
+        Item("Edward Allen Manaloto", "BSIT", R.drawable.ic_launcher_foreground,R.drawable.edwardallenmanaloto),
+        Item("Francisco Napalit", "BSIT", R.drawable.ic_launcher_foreground,R.drawable.francisconapalit),
+        Item("Harwin Mendoza", "BSIT", R.drawable.ic_launcher_foreground,R.drawable.harwinmendoza),
+        Item("Jerry Lucas", "BSIT", R.drawable.ic_launcher_foreground,R.drawable.jerrylucas),
+        Item("John Ray Medina", "BSIT", R.drawable.ic_launcher_foreground,R.drawable.johnraymedina),
+        Item("Lester Loyola", "BSIT", R.drawable.ic_launcher_foreground,R.drawable.lesterloyola),
+        Item("Mark Lagman", "BSIT", R.drawable.ic_launcher_foreground,R.drawable.marklagman),
+        Item("Michael John Endaya", "BSIT", R.drawable.ic_launcher_foreground,R.drawable.michaeljohnendaya),
+        Item("Ronielle Antonio", "BSIT", R.drawable.ic_launcher_foreground,R.drawable.ronielleantonio)
     )
 
     /**
